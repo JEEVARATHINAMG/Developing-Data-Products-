@@ -1,0 +1,57 @@
+---
+title: 'Developing Data Products Week 2 Assignment '
+author: "G.Jeevarathinam"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+
+1.  Instructions
+
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+
+Review criteria
+
+The rubric contains the following two questions:
+
+Does the web page feature a date and is this date less than two months before the date that you're grading this assignment? Does the web page feature an interactive map that appears to have been created with Leaflet? Submission Here is the India Gate, Qutb Minar, Red Fort, Humayun's Tomb, Gurudwara Bangla Sahib, Akshardham some of the Visiting locations in Delhi, Capital of India
+
+-if(!require(leaflet)) install.packages("leaflet")
+
+```{r, echo =FALSE}
+library(knitr)
+library(leaflet)
+library(dplyr)
+```
+
+```{r,echo=FALSE}
+library(leaflet)
+set.seed(2016-04-16)
+df <- data.frame(lat=runif(20, min=11.55, max = 11.65 ),
+                 lng=runif(20, min=77.9, max = 78.40 ))    
+df %>%
+  leaflet()%>%
+  addTiles() %>%
+  addMarkers()
+```
+
+```{r,echo=FALSE}
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lat=11.79,lng=77.8, popup="Mettur, Salem") %>%
+ addMarkers(lat=11.66, lng=78.15, popup="Salem, Tamil Nadu") %>%
+ addMarkers(lat=11.59,lng=78.15, popup="Oothu Malai, Salem") %>%
+ addMarkers(lat=11.80,lng=78.20, popup="Yercaud,Salem") %>%
+ addMarkers(lat=11.78,lng=78.03, popup="Salem Airport, Salem") %>%
+ addMarkers(lat=11.72,lng=78.11, popup="Dalmia Magnasite,Salem") %>%
+ addMarkers(lat=11.66,lng=78.03, popup="Salem Steel Plant,Salem") #%>%
+  #setView (lat=28.6129, lng=77.2295, zoom=16) 
+  
+m   # Print the map
+```
